@@ -3,17 +3,17 @@
 import { IceCreamDrip } from "@/components/animations/IceCreamDrip";
 
 export function SectionDivider({
-  fromColor,
-  toColor,
+  dripColor,
+  bgColor,
   className = "",
 }: {
-  fromColor: string;
-  toColor: string;
+  dripColor: string;
+  bgColor: string;
   className?: string;
 }) {
   return (
-    <div className={`relative ${className}`} style={{ backgroundColor: toColor, marginTop: -1 }}>
-      <IceCreamDrip color={fromColor} />
+    <div className={`relative ${className}`} style={{ backgroundColor: bgColor, marginTop: -1 }}>
+      <IceCreamDrip color={dripColor} />
     </div>
   );
 }
