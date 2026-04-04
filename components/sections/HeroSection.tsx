@@ -76,7 +76,7 @@ export function HeroSection() {
           transition={{ delay: 0.6 }}
           className="font-[family-name:var(--font-heading)] text-xl sm:text-2xl md:text-3xl text-chocolate-mid mb-2"
         >
-          Glacier & Salon de The Artisanal
+          Glacier & Salon de Thé Artisanal
         </motion.p>
 
         <motion.p
@@ -86,7 +86,7 @@ export function HeroSection() {
           transition={{ delay: 0.8 }}
           className="font-[family-name:var(--font-body)] text-base sm:text-lg text-chocolate-mid/70 mb-8"
         >
-          Au coeur du Vercors, des glaces faites avec amour
+          Au cœur du Vercors, des glaces faites avec amour
         </motion.p>
 
         {/* CTAs */}
@@ -101,7 +101,7 @@ export function HeroSection() {
             href="#glaces"
             className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-waffle text-white font-[family-name:var(--font-heading)] font-medium text-lg hover:bg-waffle-dark transition-colors animate-gentle-pulse"
           >
-            Decouvrir nos parfums
+            Découvrir nos parfums
           </a>
           <a
             href="#contact"

@@ -24,7 +24,7 @@ export function FlavorsSection() {
       <Container>
         <SectionHeading
           title="Nos Glaces & Sorbets"
-          subtitle="25 parfums artisanaux, faits maison"
+          subtitle="25 parfums artisanaux, faits maison !"
         />
 
         {/* Tabs */}
@@ -73,7 +73,7 @@ export function FlavorsSection() {
           viewport={{ once: true }}
           className="text-center mt-8 font-[family-name:var(--font-script)] text-lg text-chocolate-mid/60"
         >
-          Disponibles en pots d&apos;un demi-litre a emporter
+          Disponibles en pots d&apos;un demi-litre à emporter
         </motion.p>
       </Container>
     </section>

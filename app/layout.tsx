@@ -21,23 +21,23 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "LYLYLAND | Glacier & Salon de The Artisanal - La Chapelle en Vercors",
+  title: "LYLYLAND | Glacier & Salon de Thé Artisanal - La Chapelle en Vercors",
   description:
-    "Glaces artisanales, sorbets, bubble waffles, crepes et patisseries au coeur du Vercors. Epicerie fine et cave a vins. Salon de the familial a La Chapelle en Vercors.",
+    "Glaces artisanales, sorbets, bubble waffles, crêpes et pâtisseries au cœur du Vercors. Épicerie fine et cave à vins. Salon de thé familial à La Chapelle en Vercors.",
   keywords: [
     "glacier",
     "glaces artisanales",
     "La Chapelle en Vercors",
     "Vercors",
-    "salon de the",
+    "salon de thé",
     "bubble waffle",
     "sorbet",
-    "epicerie fine",
+    "épicerie fine",
   ],
   openGraph: {
     title: "LYLYLAND - Glacier Artisanal du Vercors",
     description:
-      "Des glaces faites avec amour au coeur des montagnes du Vercors",
+      "Des glaces faites avec amour au cœur des montagnes du Vercors",
     locale: "fr_FR",
     type: "website",
   },

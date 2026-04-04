@@ -60,7 +60,7 @@ export function ServicesSection() {
                         day.open ? "text-pistache font-medium" : "text-chocolate-mid/40"
                       }`}
                     >
-                      {day.open ? day.hours : "Ferme"}
+                      {day.open ? day.hours : "Fermé"}
                     </span>
                   </div>
                 ))}

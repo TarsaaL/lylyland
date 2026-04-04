@@ -10,7 +10,7 @@ export function Footer() {
               LYLYLAND
             </span>
             <p className="mt-2 text-cream/70 text-sm font-[family-name:var(--font-body)]">
-              Fait avec amour a {contact.city}
+              Fait avec amour à {contact.city}
             </p>
           </div>
 
@@ -28,7 +28,7 @@ export function Footer() {
 
           <div className="text-center md:text-right text-sm text-cream/50 font-[family-name:var(--font-body)]">
             <p>&copy; {new Date().getFullYear()} LYLYLAND</p>
-            <p className="mt-1">Glacier & Salon de The Artisanal</p>
+            <p className="mt-1">Glacier & Salon de Thé Artisanal</p>
           </div>
         </div>
       </div>

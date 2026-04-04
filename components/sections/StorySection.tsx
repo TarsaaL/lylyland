@@ -32,7 +32,7 @@ export function StorySection() {
               </div>
               <blockquote className="relative z-10 font-[family-name:var(--font-script)] text-2xl sm:text-3xl text-chocolate leading-relaxed rotate-[-1deg]">
                 Chaque boule de glace est une invitation au voyage, un moment
-                de bonheur simple partage en famille.
+                de bonheur simple partagé en famille.
               </blockquote>
               <div className="mt-4 flex items-center gap-2">
                 <Heart className="w-4 h-4 text-framboise" />
@@ -52,23 +52,23 @@ export function StorySection() {
             className="lg:col-span-3 space-y-5"
           >
             <p className="font-[family-name:var(--font-body)] text-base sm:text-lg text-chocolate-mid leading-relaxed">
-              Au coeur du Vercors, dans le charmant village de La Chapelle en Vercors,
+              Au cœur du Vercors, dans le charmant village de La Chapelle en Vercors,
               LYLYLAND est bien plus qu&apos;un glacier. C&apos;est un lieu de vie ou la
               passion pour les bonnes choses se transmet en famille.
             </p>
             <p className="font-[family-name:var(--font-body)] text-base sm:text-lg text-chocolate-mid leading-relaxed">
-              Lydia cree chaque jour des glaces artisanales avec des ingredients
+              Lydia crée chaque jour des glaces artisanales avec des ingrédients
               d&apos;exception : vanille de Madagascar, cafe de Colombie, chocolat Valrhona...
-              Chaque parfum est une recette unique, elaboree avec soin et gourmandise.
+              Chaque parfum est une recette unique, élaborée avec soin et gourmandise.
             </p>
             <p className="font-[family-name:var(--font-body)] text-base sm:text-lg text-chocolate-mid leading-relaxed">
-              Le salon est aussi une epicerie fine ou l&apos;on decouvre des thes bio,
-              des amandes d&apos;Andalousie, et les vins soigneusement selectionnes par Pascal
-              aupres des caves cooperatives du Sud.
+              Le salon est aussi une épicerie fine où l&apos;on découvre des thés bio,
+              des amandes d&apos;Andalousie, et les vins soigneusement sélectionnés par Pascal
+              auprès des caves coopératives du Sud.
             </p>
             <p className="font-[family-name:var(--font-body)] text-base sm:text-lg text-chocolate-mid leading-relaxed">
-              Recemment, leur fille a rejoint l&apos;aventure, apportant une energie
-              nouvelle a ce projet familial. Ici, on vient pour la glace, on reste
+              Récemment, leur fille a rejoint l&apos;aventure, apportant une énergie
+              nouvelle à ce projet familial. Ici, on vient pour la glace, on reste
               pour l&apos;accueil.
             </p>
           </motion.div>

@@ -16,8 +16,8 @@ export function CreationsSection() {
 
       <Container className="relative z-10">
         <SectionHeading
-          title="Nos Creations Gourmandes"
-          subtitle="Bubble waffles, crepes & patisseries"
+          title="Nos Créations Gourmandes"
+          subtitle="Bubble waffles, crêpes & pâtisseries"
         />
 
         <motion.div

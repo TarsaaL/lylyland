@@ -19,8 +19,8 @@ export function EpicerieSection() {
     <section id="epicerie" className="relative py-20 sm:py-28 bg-cream-dark">
       <Container>
         <SectionHeading
-          title="Epicerie Fine & Cave a Vins"
-          subtitle="Des produits selectionnes avec soin"
+          title="Épicerie Fine & Cave à Vins"
+          subtitle="Des produits sélectionnés avec soin"
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
@@ -32,13 +32,13 @@ export function EpicerieSection() {
                   <Leaf className="w-6 h-6 text-pistache" />
                 </div>
                 <h3 className="font-[family-name:var(--font-heading)] text-2xl font-semibold text-chocolate">
-                  Epicerie Fine
+                  Épicerie Fine
                 </h3>
               </div>
 
               <p className="font-[family-name:var(--font-body)] text-sm text-chocolate-mid mb-6 leading-relaxed">
-                Des produits bio et artisanaux selectionnes pour leur qualite
-                exceptionnelle. Du cafe bio aux chocolats Valrhona, chaque
+                Des produits bio et artisanaux sélectionnés pour leur qualité
+                exceptionnelle. Du café bio aux chocolats Valrhona, chaque
                 produit raconte une histoire.
               </p>
 
@@ -73,14 +73,14 @@ export function EpicerieSection() {
                   <Wine className="w-6 h-6 text-myrtille" />
                 </div>
                 <h3 className="font-[family-name:var(--font-heading)] text-2xl font-semibold text-chocolate">
-                  Cave a Vins
+                  Cave à Vins
                 </h3>
               </div>
 
               <p className="font-[family-name:var(--font-body)] text-sm text-chocolate-mid mb-6 leading-relaxed">
-                Une selection de nectars issus de caves cooperatives du Sud,
+                Une sélection de nectars issus de caves coopératives du Sud,
                 choisie avec passion. Des vins qui accompagnent parfaitement
-                un apres-midi gourmand.
+                un après-midi gourmand.
               </p>
 
               <div className="space-y-4">

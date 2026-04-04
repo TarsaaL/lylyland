@@ -1,13 +1,13 @@
 export const flavors = {
   glaces: [
     { name: "Vanille de Madagascar", color: "#F5E6C8", origin: "Madagascar" },
-    { name: "Cafe de Colombie", color: "#6F4E37", origin: "Colombie" },
+    { name: "Café de Colombie", color: "#6F4E37", origin: "Colombie" },
     { name: "Miel-amandes", color: "#DAA520" },
-    { name: "Cacahuetes", color: "#C19A6B" },
+    { name: "Cacahuètes", color: "#C19A6B" },
     { name: "Chocolat Valrhona", color: "#3D1E0E", qualifier: "Valrhona" },
-    { name: "Praline", color: "#B87333" },
-    { name: "Caramel beurre sale", color: "#C67B30" },
-    { name: "Chataigne d'Ardeche", color: "#954535", origin: "Ardeche" },
+    { name: "Praliné", color: "#B87333" },
+    { name: "Caramel beurre salé", color: "#C67B30" },
+    { name: "Châtaigne d'Ardèche", color: "#954535", origin: "Ardèche" },
     { name: "Nutella", color: "#5C3317" },
     { name: "Noix du Royans", color: "#8B7355", origin: "Royans" },
     { name: "Pistache", color: "#93C572" },
@@ -26,7 +26,7 @@ export const flavors = {
     { name: "Passion", color: "#FFD700" },
     { name: "Mangue", color: "#FF8243" },
     { name: "Coco", color: "#FFFDD0" },
-    { name: "Peche blanche", color: "#FFDAB9" },
+    { name: "Pêche blanche", color: "#FFDAB9" },
   ],
 };
 
@@ -34,19 +34,19 @@ export const creations = [
   {
     title: "Bubble Waffles",
     description:
-      "Nos gaufres a bulles croustillantes garnies de glaces artisanales, fruits frais et toppings gourmands.",
+      "Nos gaufres à bulles croustillantes garnies de glaces artisanales, fruits frais et toppings gourmands.",
     icon: "waffle",
   },
   {
-    title: "Crepes Gourmandes",
+    title: "Crêpes Gourmandes",
     description:
-      "Crepes fines et moelleuses, garnies de chocolat Valrhona, fruits de saison ou caramel beurre sale.",
+      "Crêpes fines et moelleuses, garnies de chocolat Valrhona, fruits de saison ou caramel beurre salé.",
     icon: "crepe",
   },
   {
-    title: "Patisseries Maison",
+    title: "Pâtisseries Maison",
     description:
-      "Entremets glaces, buches et creations patissieres preparees avec soin par Lydia.",
+      "Entremets glacés, bûches et créations pâtissières préparées avec soin par Lydia.",
     icon: "cake",
   },
 ];
@@ -54,20 +54,20 @@ export const creations = [
 export const epicerie = {
   items: [
     { name: "Amandes bio d'Andalousie", category: "bio" },
-    { name: "Cafe Bio", category: "bio" },
-    { name: "The noir Bio", category: "bio" },
-    { name: "The vert Bio", category: "bio" },
+    { name: "Café Bio", category: "bio" },
+    { name: "Thé noir Bio", category: "bio" },
+    { name: "Thé vert Bio", category: "bio" },
     { name: "Chocolats Valrhona", category: "chocolat" },
     { name: "Macarons", category: "patisserie" },
   ],
   wines: [
     {
       name: "TerraVentoux",
-      description: "Cave cooperative du Ventoux",
+      description: "Cave coopérative du Ventoux",
     },
     {
       name: "RoccaMaura",
-      description: "Cave cooperative du Sud",
+      description: "Cave coopérative du Sud",
     },
   ],
 };
@@ -76,9 +76,9 @@ export const services = [
   { icon: "Sun", label: "Terrasse", description: "Profitez du soleil du Vercors" },
   { icon: "Truck", label: "Livraison", description: "On vous livre !" },
   { icon: "Baby", label: "Espace enfants", description: "Les petits sont les bienvenus" },
-  { icon: "Wifi", label: "WiFi gratuit", description: "Restez connectes" },
-  { icon: "Accessibility", label: "Accessible PMR", description: "Acces pour tous" },
-  { icon: "ShoppingBag", label: "A emporter", description: "Emportez vos glaces" },
+  { icon: "Wifi", label: "WiFi gratuit", description: "Restez connectés" },
+  { icon: "Accessibility", label: "Accessible PMR", description: "Accès pour tous" },
+  { icon: "ShoppingBag", label: "À emporter", description: "Emportez vos glaces" },
 ];
 
 export const hours = {
@@ -93,7 +93,7 @@ export const hours = {
     { day: "Samedi", open: true, hours: "09h00 - 12h00" },
     { day: "Dimanche", open: false },
   ],
-  note: "Horaires saisonniers - consultez-nous pour les horaires d'ete",
+  note: "Horaires saisonniers — consultez-nous pour les horaires d'été",
 };
 
 export const contact = {
@@ -110,8 +110,8 @@ export const contact = {
 
 export const navLinks = [
   { label: "Nos Glaces", href: "#glaces" },
-  { label: "Creations", href: "#creations" },
-  { label: "Epicerie", href: "#epicerie" },
+  { label: "Créations", href: "#creations" },
+  { label: "Épicerie", href: "#epicerie" },
   { label: "Notre Histoire", href: "#histoire" },
   { label: "Infos", href: "#infos" },
   { label: "Contact", href: "#contact" },

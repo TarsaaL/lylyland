@@ -13,7 +13,7 @@ export function ContactSection() {
       <Container>
         <SectionHeading
           title="Nous Trouver"
-          subtitle="Venez nous voir au coeur du Vercors !"
+          subtitle="Venez nous voir au cœur du Vercors !"
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
@@ -95,7 +95,7 @@ export function ContactSection() {
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-waffle text-white font-[family-name:var(--font-heading)] font-medium text-sm hover:bg-waffle-dark transition-colors w-full"
               >
-                Itineraire
+                Itinéraire
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
