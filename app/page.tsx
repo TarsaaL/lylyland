@@ -14,18 +14,25 @@ export default function Home() {
     <>
       <Navbar />
       <main>
+        {/* Hero: bg cream (#FFF8F0) */}
         <HeroSection />
-        <SectionDivider color="#FFF1E0" />
+        <SectionDivider fromColor="#FFF8F0" toColor="#FFF1E0" />
+        {/* Flavors: bg cream-dark (#FFF1E0) */}
         <FlavorsSection />
-        <SectionDivider color="#FFF8F0" />
+        <SectionDivider fromColor="#FFF1E0" toColor="#FFF8F0" />
+        {/* Creations: bg cream (#FFF8F0) */}
         <CreationsSection />
-        <SectionDivider color="#FFF1E0" />
+        <SectionDivider fromColor="#FFF8F0" toColor="#FFF1E0" />
+        {/* Epicerie: bg cream-dark (#FFF1E0) */}
         <EpicerieSection />
-        <SectionDivider color="#FFF8F0" />
+        <SectionDivider fromColor="#FFF1E0" toColor="#FFF8F0" />
+        {/* Story: bg cream (#FFF8F0) */}
         <StorySection />
-        <SectionDivider color="#FFF1E0" />
+        <SectionDivider fromColor="#FFF8F0" toColor="#FFF1E0" />
+        {/* Services: bg cream-dark (#FFF1E0) */}
         <ServicesSection />
-        <SectionDivider color="#FFF8F0" />
+        <SectionDivider fromColor="#FFF1E0" toColor="#FFF8F0" />
+        {/* Contact: bg cream (#FFF8F0) */}
         <ContactSection />
       </main>
       <Footer />
