@@ -15,17 +15,17 @@ export default function Home() {
       <Navbar />
       <main>
         <HeroSection />
-        <SectionDivider dripColor="#E8B87A" bgColor="#FFF1E0" />
+        <SectionDivider dripColor="#E8B87A" bgColor="#FFF1E0" variant={0} />
         <FlavorsSection />
-        <SectionDivider dripColor="#E8789A" bgColor="#FFF8F0" />
+        <SectionDivider dripColor="#E8789A" bgColor="#FFF8F0" variant={1} />
         <CreationsSection />
-        <SectionDivider dripColor="#DBA05C" bgColor="#FFF1E0" />
+        <SectionDivider dripColor="#DBA05C" bgColor="#FFF1E0" variant={2} />
         <EpicerieSection />
-        <SectionDivider dripColor="#7B6BA0" bgColor="#FFF8F0" />
+        <SectionDivider dripColor="#7B6BA0" bgColor="#FFF8F0" variant={3} />
         <StorySection />
-        <SectionDivider dripColor="#E8B87A" bgColor="#FFF1E0" />
+        <SectionDivider dripColor="#E8B87A" bgColor="#FFF1E0" variant={4} />
         <ServicesSection />
-        <SectionDivider dripColor="#A5D46A" bgColor="#FFF8F0" />
+        <SectionDivider dripColor="#A5D46A" bgColor="#FFF8F0" variant={5} />
         <ContactSection />
       </main>
       <Footer />
