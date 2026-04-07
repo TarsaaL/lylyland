@@ -11,106 +11,74 @@ export function IceCreamDrip({
   className?: string;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "100px" });
-
-  // Connected melting path — a continuous wavy bar with drips hanging down
-  // ViewBox is 200x60, rendered at full width and 120px height
-  // Aspect ratio: 200/60 = 3.33, rendered: ~1260/120 = 10.5
-  // So horizontal is ~3.15x more stretched than vertical
-  // We compensate by making drips NARROW in the viewBox (they'll get stretched wide)
-  const meltPath = [
-    "M 0 0",
-    "L 200 0",
-    "L 200 8",
-    // Right side — gentle wave going left
-    "C 195 8, 192 9, 190 8",
-    // small drip
-    "C 188 8, 187 10, 186 14",
-    "C 185.5 18, 185 20, 184.5 18",
-    "C 184 14, 183 10, 181 8",
-    // wave
-    "C 178 7, 174 8, 170 8",
-    // medium drip
-    "C 167 8, 165 10, 164 16",
-    "C 163 24, 162.5 30, 162 34",
-    "C 161.5 37, 161 38, 160.5 37",
-    "C 160 34, 159.5 30, 159 24",
-    "C 158 16, 157 10, 155 8",
-    // wave
-    "C 151 7, 146 8, 142 8.5",
-    "C 138 9, 135 8, 132 8",
-    // tall drip
-    "C 130 8, 128 11, 127 18",
-    "C 126 28, 125.5 38, 125 44",
-    "C 124.7 48, 124.3 50, 124 48",
-    "C 123.5 44, 123 38, 122 28",
-    "C 121 18, 120 11, 118 8",
-    // wave
-    "C 115 7, 111 8, 107 8",
-    // small drip
-    "C 105 8, 104 10, 103.5 13",
-    "C 103 16, 102.7 17, 102.3 16",
-    "C 102 13, 101 10, 99 8",
-    // wave
-    "C 96 7, 92 8.5, 88 8",
-    // medium-tall drip
-    "C 86 8, 84 11, 83 19",
-    "C 82 30, 81.5 36, 81 40",
-    "C 80.7 43, 80.3 44, 80 43",
-    "C 79.5 40, 79 36, 78 30",
-    "C 77 19, 76 11, 74 8",
-    // wave
-    "C 71 7, 67 8, 63 8",
-    "C 60 8, 57 8.5, 54 8",
-    // drip
-    "C 52 8, 51 10, 50 15",
-    "C 49 22, 48.5 26, 48 29",
-    "C 47.7 31, 47.3 32, 47 31",
-    "C 46.5 29, 46 26, 45 22",
-    "C 44 15, 43 10, 41 8",
-    // wave
-    "C 38 7, 34 8, 30 8.5",
-    // small drip
-    "C 28 9, 27 10, 26.5 13",
-    "C 26 16, 25.7 17, 25.3 16",
-    "C 25 13, 24 10, 22 8.5",
-    // wave
-    "C 19 7.5, 15 8.5, 12 8",
-    // last drip
-    "C 10 8, 9 11, 8 17",
-    "C 7 26, 6.5 32, 6 36",
-    "C 5.7 39, 5.3 40, 5 39",
-    "C 4.5 36, 4 32, 3 26",
-    "C 2 17, 1 11, 0 8",
-    "Z",
-  ].join(" ");
+  const isInView = useInView(ref, { once: true, margin: "200px" });
 
   return (
     <div
       ref={ref}
       className={`w-full overflow-hidden pointer-events-none ${className}`}
     >
-      <motion.svg
-        viewBox="0 0 200 55"
-        preserveAspectRatio="none"
-        className="w-full block"
-        style={{ height: "120px" }}
+      <motion.div
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.8 }}
       >
-        <motion.path
-          d={meltPath}
-          fill={color}
-          initial={{ scaleY: 0 }}
-          animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-          transition={{
-            duration: 1.5,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          style={{ transformOrigin: "center top" }}
-        />
-      </motion.svg>
+        <svg
+          viewBox="0 0 1200 100"
+          preserveAspectRatio="none"
+          className="w-full block"
+          style={{ height: "80px" }}
+        >
+          <path
+            d={[
+              "M 0 0 L 1200 0 L 1200 12",
+              // Wave + drip 1
+              "C 1160 12, 1140 14, 1120 12",
+              "C 1100 10, 1090 12, 1085 18 C 1082 28, 1080 38, 1078 44 C 1076 50, 1074 52, 1072 50 C 1070 44, 1068 34, 1066 24 C 1063 16, 1058 12, 1050 11",
+              // Wave
+              "C 1030 10, 1010 13, 990 12",
+              // Small drip 2
+              "C 980 12, 975 14, 972 20 C 970 24, 969 26, 968 24 C 966 20, 964 14, 958 12",
+              // Wave
+              "C 940 10, 920 13, 900 12",
+              // Tall drip 3
+              "C 890 12, 882 14, 878 22 C 874 36, 871 50, 868 60 C 866 66, 864 68, 862 66 C 860 60, 857 46, 854 34 C 850 22, 846 14, 838 12",
+              // Wave
+              "C 820 10, 800 13, 780 12",
+              // Medium drip 4
+              "C 770 12, 764 15, 760 22 C 756 32, 754 40, 752 44 C 750 48, 748 48, 746 44 C 744 38, 742 30, 738 22 C 734 15, 728 12, 718 12",
+              // Wave
+              "C 700 11, 680 13, 660 12",
+              // Small drip 5
+              "C 652 12, 648 14, 645 19 C 643 23, 642 25, 641 23 C 639 19, 636 14, 630 12",
+              // Wave
+              "C 610 10, 590 13, 570 12",
+              // Tall drip 6
+              "C 560 12, 554 15, 550 24 C 546 38, 543 52, 540 62 C 538 70, 536 72, 534 70 C 532 64, 529 50, 526 38 C 522 24, 518 15, 508 12",
+              // Wave
+              "C 490 10, 470 13, 450 12",
+              // Small drip 7
+              "C 442 12, 438 15, 435 20 C 433 24, 432 25, 431 24 C 429 20, 426 15, 420 12",
+              // Wave
+              "C 400 10, 380 13, 360 12",
+              // Medium drip 8
+              "C 350 12, 344 15, 340 24 C 336 36, 334 44, 332 50 C 330 54, 328 55, 326 53 C 324 48, 322 40, 318 30 C 314 20, 308 13, 298 12",
+              // Wave
+              "C 280 10, 260 14, 240 12",
+              // Drip 9
+              "C 232 12, 226 14, 222 20 C 218 30, 216 38, 214 42 C 212 46, 210 46, 208 42 C 206 36, 204 28, 200 20 C 196 14, 190 12, 180 12",
+              // Wave
+              "C 160 10, 140 13, 120 12",
+              // Last drip 10
+              "C 112 12, 106 16, 102 26 C 98 40, 96 52, 94 58 C 92 62, 90 63, 88 60 C 86 54, 84 44, 80 32 C 76 20, 70 13, 60 12",
+              // Final wave
+              "C 40 10, 20 13, 0 12",
+              "Z",
+            ].join(" ")}
+            fill={color}
+          />
+        </svg>
+      </motion.div>
     </div>
   );
 }
