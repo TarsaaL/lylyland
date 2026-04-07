@@ -3,81 +3,75 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-// Helper: generate a single drip drop shape as SVG path commands
-// cx = center x, neckW = neck width, bulgeW = bulge width, h = total height
-function drop(cx: number, neckW: number, bulgeW: number, h: number) {
-  const neckH = h * 0.55;
-  const bulgeH = h - neckH;
-  const left = cx - neckW;
-  const right = cx + neckW;
+// A drip: wide at top where it leaves the bar, tapers to a narrow rounded tip
+// cx=center, topW=half-width at top, h=height, tipR=radius of tip
+function drip(cx: number, topW: number, h: number, tipR: number) {
+  const l = cx - topW;
+  const r = cx + topW;
+  const mid = h * 0.6;
   return [
-    // Narrow down into the neck
-    `C ${left + 2} 14, ${left} 18, ${left} ${neckH}`,
-    // Bulge out into a round drop
-    `C ${left} ${neckH + bulgeH * 0.3}, ${cx - bulgeW} ${neckH + bulgeH * 0.5}, ${cx - bulgeW} ${neckH + bulgeH * 0.7}`,
-    // Round bottom
-    `C ${cx - bulgeW} ${h - 2}, ${cx - bulgeW * 0.5} ${h}, ${cx} ${h}`,
-    `C ${cx + bulgeW * 0.5} ${h}, ${cx + bulgeW} ${h - 2}, ${cx + bulgeW} ${neckH + bulgeH * 0.7}`,
-    // Back up through bulge to neck
-    `C ${cx + bulgeW} ${neckH + bulgeH * 0.5}, ${right} ${neckH + bulgeH * 0.3}, ${right} ${neckH}`,
-    // Back up to the base
-    `C ${right} 18, ${right - 2} 14,`,
+    // Start from top-left of drip
+    `${l} 14`,
+    // Left side curves inward as it flows down
+    `C ${l} 20, ${l + 2} ${mid * 0.5}, ${cx - tipR * 1.5} ${mid}`,
+    // Continue narrowing to the tip
+    `C ${cx - tipR} ${mid + (h - mid) * 0.5}, ${cx - tipR} ${h - tipR}, ${cx} ${h}`,
+    // Round the tip and come back up the right side
+    `C ${cx + tipR} ${h - tipR}, ${cx + tipR} ${mid + (h - mid) * 0.5}, ${cx + tipR * 1.5} ${mid}`,
+    // Right side curves back out to the top
+    `C ${r - 2} ${mid * 0.5}, ${r} 20, ${r} 14`,
   ].join(" ");
 }
 
-// Each variation defines drip positions: [cx, neckWidth, bulgeWidth, height]
-type DripDef = [number, number, number, number];
+// [cx, topHalfWidth, height, tipRadius]
+type D = [number, number, number, number];
 
-const VARIATIONS: DripDef[][] = [
-  // A: asymmetric, big left, mix of sizes
-  [[70, 8, 16, 72], [220, 5, 10, 38], [420, 10, 20, 85], [600, 6, 12, 45], [780, 8, 16, 65], [950, 5, 10, 35], [1120, 9, 18, 78]],
-  // B: many small-medium rhythmic drips
-  [[60, 6, 12, 42], [180, 7, 14, 52], [310, 5, 10, 34], [440, 8, 16, 60], [560, 6, 11, 40], [690, 7, 14, 55], [820, 5, 10, 32], [940, 8, 15, 58], [1080, 6, 12, 44], [1160, 5, 9, 30]],
-  // C: few big dramatic drips
-  [[200, 12, 24, 90], [550, 14, 26, 95], [900, 12, 22, 88], [1100, 8, 16, 55]],
-  // D: wavy organic medium drips
-  [[80, 6, 12, 42], [260, 8, 16, 58], [430, 6, 11, 38], [600, 10, 20, 72], [770, 6, 12, 40], [940, 8, 16, 60], [1130, 6, 11, 36]],
-  // E: elegant spaced drips
-  [[150, 8, 16, 58], [380, 10, 20, 75], [620, 8, 15, 55], [850, 12, 22, 85], [1060, 7, 14, 48]],
+const VARIATIONS: D[][] = [
+  // A: mixed organic
+  [[80, 22, 62, 5], [250, 14, 35, 3], [440, 26, 78, 6], [630, 16, 42, 4], [810, 20, 58, 5], [980, 12, 30, 3], [1130, 24, 70, 5]],
+  // B: rhythmic small-medium
+  [[55, 16, 38, 3], [185, 18, 48, 4], [320, 14, 32, 3], [455, 22, 56, 5], [580, 16, 36, 3], [710, 20, 50, 4], [840, 14, 30, 3], [965, 22, 54, 5], [1090, 16, 40, 4], [1170, 12, 26, 3]],
+  // C: dramatic big drips
+  [[180, 30, 82, 6], [500, 34, 90, 7], [820, 28, 78, 6], [1080, 20, 52, 4]],
+  // D: gentle wave drips
+  [[90, 16, 38, 3], [270, 22, 54, 5], [440, 15, 34, 3], [620, 28, 68, 6], [790, 16, 36, 3], [960, 22, 56, 5], [1140, 14, 32, 3]],
+  // E: elegant spaced
+  [[160, 20, 52, 4], [400, 26, 68, 6], [640, 18, 48, 4], [880, 30, 80, 6], [1080, 18, 44, 4]],
   // F: playful irregular
-  [[50, 5, 10, 32], [170, 10, 20, 78], [340, 6, 11, 38], [490, 8, 16, 60], [650, 12, 24, 92], [830, 6, 12, 40], [970, 8, 15, 55], [1140, 5, 10, 34]],
+  [[60, 12, 28, 3], [190, 26, 72, 6], [360, 16, 36, 3], [510, 20, 55, 5], [680, 32, 86, 7], [860, 16, 38, 4], [1000, 22, 52, 5], [1150, 12, 28, 3]],
 ];
 
-function buildFullPath(drips: DripDef[]) {
+function buildPath(drips: D[]) {
   const sorted = [...drips].sort((a, b) => a[0] - b[0]);
-  let d = "M 0 0 L 1200 0 L 1200 12";
 
-  // Walk right to left, creating waves and drops
+  // Build a continuous path: top bar with drips hanging down
+  let d = "M 0 0 L 1200 0 L 1200 14";
   let x = 1200;
+
   for (let i = sorted.length - 1; i >= 0; i--) {
-    const [cx, neckW, bulgeW, h] = sorted[i];
-    const entryX = cx + neckW + 12;
-    // Wave to approach the drip
-    d += ` C ${x - 10} 12, ${entryX + 20} 12, ${entryX} 12`;
-    // The drop
-    d += ` ${drop(cx, neckW, bulgeW, h)}`;
-    // Exit point
-    x = cx - neckW - 12;
-    d += ` ${x} 12`;
+    const [cx, topW, h, tipR] = sorted[i];
+    const dripRight = cx + topW;
+    // Gentle wave connecting to next drip
+    d += ` C ${x - 8} 13, ${dripRight + 16} 13, ${dripRight} 14`;
+    // The drip shape
+    d += ` C ${dripRight} 20, ${dripRight - 2} ${h * 0.3}, ${cx + tipR * 1.5} ${h * 0.6}`;
+    d += ` C ${cx + tipR} ${h * 0.8}, ${cx + tipR} ${h - tipR}, ${cx} ${h}`;
+    d += ` C ${cx - tipR} ${h - tipR}, ${cx - tipR} ${h * 0.8}, ${cx - tipR * 1.5} ${h * 0.6}`;
+    d += ` C ${cx - topW + 2} ${h * 0.3}, ${cx - topW} 20, ${cx - topW} 14`;
+    x = cx - topW;
   }
-  // Close back to origin
-  d += ` C ${x - 10} 12, 10 12, 0 12 Z`;
+
+  d += ` C ${x - 8} 13, 8 13, 0 14 Z`;
   return d;
 }
 
-function buildHighlightPath(drips: DripDef[]) {
-  // A thin white stroke following the top-left edge of each drip for a shine effect
-  const sorted = [...drips].sort((a, b) => a[0] - b[0]);
-  const segments: string[] = [];
-  for (const [cx, neckW, bulgeW, h] of sorted) {
-    const left = cx - neckW;
-    const neckH = h * 0.55;
-    const bulgeH = h - neckH;
-    segments.push(
-      `M ${left + 8} 13 C ${left + 4} 16, ${left + 1} 22, ${left + 1} ${neckH * 0.8} C ${left} ${neckH + bulgeH * 0.2}, ${cx - bulgeW + 2} ${neckH + bulgeH * 0.4}, ${cx - bulgeW + 2} ${neckH + bulgeH * 0.6}`
-    );
-  }
-  return segments.join(" ");
+function buildHighlight(drips: D[]) {
+  return drips
+    .map(([cx, topW, h]) => {
+      const l = cx - topW + 3;
+      return `M ${l + 4} 16 C ${l + 2} 24, ${l} ${h * 0.25}, ${cx - 4} ${h * 0.45}`;
+    })
+    .join(" ");
 }
 
 export function IceCreamDrip({
@@ -92,14 +86,9 @@ export function IceCreamDrip({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "200px" });
   const drips = VARIATIONS[variant % VARIATIONS.length];
-  const mainPath = buildFullPath(drips);
-  const highlightPath = buildHighlightPath(drips);
 
   return (
-    <div
-      ref={ref}
-      className={`w-full overflow-hidden pointer-events-none ${className}`}
-    >
+    <div ref={ref} className={`w-full overflow-hidden pointer-events-none ${className}`}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
@@ -111,12 +100,12 @@ export function IceCreamDrip({
           className="w-full block"
           style={{ height: "80px" }}
         >
-          <path d={mainPath} fill={color} />
+          <path d={buildPath(drips)} fill={color} />
           <path
-            d={highlightPath}
+            d={buildHighlight(drips)}
             fill="none"
-            stroke="rgba(255,255,255,0.4)"
-            strokeWidth="3"
+            stroke="rgba(255,255,255,0.35)"
+            strokeWidth="3.5"
             strokeLinecap="round"
           />
         </svg>
