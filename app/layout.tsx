@@ -53,7 +53,7 @@ export default function RootLayout({
       lang="fr"
       className={`${fredoka.variable} ${nunito.variable} ${caveat.variable} antialiased`}
     >
-      <body className="min-h-screen bg-cream text-chocolate">{children}</body>
+      <body className="min-h-screen bg-cream text-chocolate overflow-x-hidden">{children}</body>
     </html>
   );
 }
