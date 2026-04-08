@@ -88,12 +88,12 @@ export function IceCreamDrip({
               }
               transition={{
                 top: {
-                  duration: 1.2 + (dropLen / 100),
+                  duration: 0.7 + (dropLen / 180),
                   delay,
-                  ease: [0.65, 0, 0.35, 1], // ease-in-out-cubic - gentle drip feel
+                  ease: [0.16, 0.84, 0.24, 1], // strong ease-out - fast start, hard deceleration
                 },
                 opacity: {
-                  duration: 0.3,
+                  duration: 0.2,
                   delay,
                 },
               }}
