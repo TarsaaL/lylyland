@@ -15,6 +15,8 @@ const VARIATIONS: DripDef[][] = [
   [[3, 16, 22], [15, 34, 66], [28, 18, 28], [42, 26, 46], [56, 42, 88], [70, 22, 34], [82, 28, 52], [95, 16, 22]],
 ];
 
+const BAR_HEIGHT = 24;
+
 export function IceCreamDrip({
   color = "#E8B87A",
   variant = 0,
@@ -25,7 +27,7 @@ export function IceCreamDrip({
   className?: string;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "200px" });
+  const isInView = useInView(ref, { once: true, margin: "100px" });
   const drips = VARIATIONS[variant % VARIATIONS.length];
   const filterId = useMemo(
     () => `goo-${variant}-${Math.random().toString(36).slice(2, 6)}`,
@@ -34,53 +36,71 @@ export function IceCreamDrip({
 
   return (
     <div ref={ref} className={`w-full pointer-events-none ${className}`}>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        {/* Hidden SVG just for the goo filter definition */}
-        <svg className="absolute w-0 h-0" aria-hidden>
-          <defs>
-            <filter id={filterId}>
-              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-              <feColorMatrix
-                in="blur"
-                mode="matrix"
-                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9"
-                result="goo"
-              />
-            </filter>
-          </defs>
-        </svg>
+      {/* Hidden SVG for goo filter definition */}
+      <svg className="absolute w-0 h-0" aria-hidden>
+        <defs>
+          <filter id={filterId}>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9"
+              result="goo"
+            />
+          </filter>
+        </defs>
+      </svg>
 
-        {/* Container with goo filter applied — shapes inside merge organically */}
+      <div
+        className="relative w-full overflow-hidden"
+        style={{ height: 100, filter: `url(#${filterId})` }}
+      >
+        {/* Top bar */}
         <div
-          className="relative w-full overflow-hidden"
-          style={{ height: 100, filter: `url(#${filterId})` }}
-        >
-          {/* Top bar */}
-          <div
-            className="absolute top-0 left-0 w-full"
-            style={{ height: 24, backgroundColor: color }}
-          />
-          {/* Drip circles — overlap with the bar, goo filter merges them */}
-          {drips.map(([leftPct, size, dropLen], i) => (
-            <div
+          className="absolute top-0 left-0 w-full"
+          style={{ height: BAR_HEIGHT, backgroundColor: color }}
+        />
+        {/* Drip circles — animate top position when in view to "drip down" */}
+        {drips.map(([leftPct, size, dropLen], i) => {
+          // Final position: partially overlapping the bar, extended by dropLen
+          const finalTop = BAR_HEIGHT - size * 0.35 + dropLen * 0.3;
+          // Start position: tucked inside the bar (invisible behind it)
+          const startTop = BAR_HEIGHT - size;
+          // Stagger each drip slightly for organic feel
+          const delay = 0.05 + (i % 3) * 0.08 + Math.random() * 0.1;
+
+          return (
+            <motion.div
               key={i}
               className="absolute rounded-full"
               style={{
                 left: `${leftPct}%`,
-                top: 24 - size * 0.35 + dropLen * 0.3,
                 width: size,
                 height: size,
                 marginLeft: -size / 2,
                 backgroundColor: color,
               }}
+              initial={{ top: startTop, opacity: 0 }}
+              animate={
+                isInView
+                  ? { top: finalTop, opacity: 1 }
+                  : { top: startTop, opacity: 0 }
+              }
+              transition={{
+                top: {
+                  duration: 1.2 + (dropLen / 100),
+                  delay,
+                  ease: [0.65, 0, 0.35, 1], // ease-in-out-cubic - gentle drip feel
+                },
+                opacity: {
+                  duration: 0.3,
+                  delay,
+                },
+              }}
             />
-          ))}
-        </div>
-      </motion.div>
+          );
+        })}
+      </div>
     </div>
   );
 }
